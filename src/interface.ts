@@ -1,34 +1,37 @@
-interface Medicamento{
+// DESAFIO: CRIANDO 'INTERFACE' NA PRATICA!
+
+
+interface Equipamento {
     id: string
     nome: string
-    dosagem: number
-    unidade: string
-    observacao?: string
+    disponivel: boolean
+    ultimaManutencao?: string
 }
 
-interface PrescricaoCirurgica{
-    cirurgiaId: string
-    medicamentos: Medicamento[]
-    validadoPor: string
+interface SalaCirurgica {
+    numero: number
+    equipamentos: Equipamento[]
+    responsavel: string
 }
 
-function prescreverMedicamento(dados: PrescricaoCirurgica): void {
-    console.log(`Validado por: ${dados.validadoPor}`)
-    dados.medicamentos.forEach((med) => {
-        console.log(`Medicamento: ${med.nome} - ${med.dosagem}${med.unidade}`)
+
+function verificarEquipamentos(dados: SalaCirurgica): void {
+    dados.equipamentos.forEach((equi) => {
+        console.log(`Equipamento: ${equi.nome} - Disponível: ${equi.disponivel}`)
     })
 }
 
-prescreverMedicamento({
-    cirurgiaId: "cir-001",
-    medicamentos: [
+const sala: SalaCirurgica = {
+    numero: 5,
+    equipamentos: [
         {
-            id: "med-001",
-            nome: "Propofol",
-            dosagem: 200,
-            unidade: "mg"
+            id: "eq-001",
+            nome: "Bisturi Elétrico",
+            disponivel: true,
+            ultimaManutencao: "2025-03-01"
         }
     ],
-    validadoPor: "Dr. Carlos Mendes"
-})
+    responsavel: "Enf. Ana Paula"
+}
 
+verificarEquipamentos(sala);
